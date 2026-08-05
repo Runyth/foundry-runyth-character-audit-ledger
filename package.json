@@ -1,0 +1,14 @@
+{
+  "name": "character-audit-ledger",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests/*.test.mjs",
+    "validate": "node tools/validate.mjs",
+    "build": "python tools/build-release.py"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

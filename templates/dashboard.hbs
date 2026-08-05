@@ -1,0 +1,168 @@
+<div class="cal-dashboard__layout">
+  <aside class="cal-dashboard__sidebar">
+    <section class="cal-panel">
+      <h2>{{localize "CAL.Dashboard.Characters"}}</h2>
+      <input type="search" data-cal-actor-search placeholder="{{localize 'CAL.Dashboard.SearchCharacters'}}" aria-label="{{localize 'CAL.Dashboard.SearchCharacters'}}">
+      <label class="cal-check cal-check--all">
+        <input type="checkbox" data-cal-select-all>
+        <span>{{localize "CAL.Common.SelectAll"}}</span>
+      </label>
+      <div class="cal-dashboard__actors">
+        {{#if hasActors}}
+          {{#each actors as |actor|}}
+            <article class="cal-actor-row" data-cal-actor-row data-actor-id="{{actor.id}}" data-actor-name="{{actor.name}}">
+              <label class="cal-actor-row__identity">
+                <input type="checkbox" value="{{actor.id}}" data-cal-select-actor>
+                <img src="{{actor.img}}" alt="" loading="lazy">
+                <span>
+                  <strong>{{actor.name}}</strong>
+                  <small>{{actor.type}}</small>
+                </span>
+              </label>
+              <div class="cal-actor-row__toggles">
+                <label class="cal-check">
+                  <input type="checkbox" data-cal-config="default" {{#if actor.config.defaultSheetEnabled}}checked{{/if}}>
+                  <span>{{localize "CAL.Dashboard.DefaultSheetTab"}}</span>
+                </label>
+                <label class="cal-check">
+                  <input type="checkbox" data-cal-config="tidy" {{#if actor.config.tidySheetEnabled}}checked{{/if}}>
+                  <span>{{localize "CAL.Dashboard.TidySheetTab"}}</span>
+                </label>
+                <button type="button" class="cal-button cal-button--compact" data-cal-action="configure-readers" data-actor-id="{{actor.id}}">
+                  <i class="fa-solid fa-user-shield" aria-hidden="true"></i>
+                  {{localize "CAL.Dashboard.FullReaders"}} (<span data-cal-reader-count>{{actor.readerCount}}</span>)
+                </button>
+              </div>
+            </article>
+          {{/each}}
+        {{else}}
+          <p>{{localize "CAL.Dashboard.NoPlayerCharacters"}}</p>
+        {{/if}}
+      </div>
+    </section>
+
+    <section class="cal-panel">
+      <h2>{{localize "CAL.Dashboard.Highlighting"}}</h2>
+      <p class="hint">{{localize "CAL.Dashboard.HighlightingHint"}}</p>
+      <div class="cal-check-grid">
+        {{#each categories as |category|}}
+          <label class="cal-check">
+            <input type="checkbox" value="{{category.id}}" data-cal-highlight-rule {{#if category.highlighted}}checked{{/if}}>
+            <span>{{category.label}}</span>
+          </label>
+        {{/each}}
+      </div>
+      <button type="button" class="cal-button cal-button--primary" data-cal-action="save-config">
+        <i class="fa-solid fa-floppy-disk" aria-hidden="true"></i>
+        {{localize "CAL.Common.Save"}}
+      </button>
+    </section>
+  </aside>
+
+  <main class="cal-dashboard__main">
+    <section class="cal-panel cal-filter-panel">
+      <h2>{{localize "CAL.Dashboard.Filters"}}</h2>
+      <div class="cal-filter-grid">
+        <label>
+          <span>{{localize "CAL.Filters.Search"}}</span>
+          <input type="search" data-cal-filter="search">
+        </label>
+        <label>
+          <span>{{localize "CAL.Filters.From"}}</span>
+          <input type="date" data-cal-filter="from">
+        </label>
+        <label>
+          <span>{{localize "CAL.Filters.To"}}</span>
+          <input type="date" data-cal-filter="to">
+        </label>
+        <label class="cal-check cal-check--standalone">
+          <input type="checkbox" data-cal-filter="highlighted">
+          <span>{{localize "CAL.Filters.HighlightedOnly"}}</span>
+        </label>
+      </div>
+
+      <details>
+        <summary>{{localize "CAL.Filters.Categories"}}</summary>
+        <div class="cal-check-grid">
+          {{#each categories as |category|}}
+            <label class="cal-check">
+              <input type="checkbox" value="{{category.id}}" data-cal-filter-category>
+              <span>{{category.label}}</span>
+            </label>
+          {{/each}}
+        </div>
+      </details>
+      <details>
+        <summary>{{localize "CAL.Filters.Users"}}</summary>
+        <div class="cal-check-grid">
+          {{#each users as |user|}}
+            <label class="cal-check">
+              <input type="checkbox" value="{{user.id}}" data-cal-filter-user>
+              <span>{{user.name}}{{#unless user.active}} ({{localize "CAL.Common.Offline"}}){{/unless}}</span>
+            </label>
+          {{/each}}
+        </div>
+      </details>
+      <details>
+        <summary>{{localize "CAL.Filters.Actions"}}</summary>
+        <div class="cal-check-grid">
+          <label class="cal-check"><input type="checkbox" value="create" data-cal-filter-action><span>{{localize "CAL.Actions.create"}}</span></label>
+          <label class="cal-check"><input type="checkbox" value="update" data-cal-filter-action><span>{{localize "CAL.Actions.update"}}</span></label>
+          <label class="cal-check"><input type="checkbox" value="delete" data-cal-filter-action><span>{{localize "CAL.Actions.delete"}}</span></label>
+        </div>
+      </details>
+
+      <div class="cal-toolbar">
+        <button type="button" class="cal-button cal-button--primary" data-cal-action="load">
+          <i class="fa-solid fa-filter" aria-hidden="true"></i>
+          {{localize "CAL.Dashboard.LoadEntries"}}
+        </button>
+        <label>
+          <span>{{localize "CAL.Dashboard.ExportMode"}}</span>
+          <select data-cal-export-mode>
+            <option value="combined">{{localize "CAL.Dashboard.ExportCombined"}}</option>
+            <option value="per-character">{{localize "CAL.Dashboard.ExportPerCharacter"}}</option>
+          </select>
+        </label>
+        <button type="button" class="cal-button" data-cal-action="export-jsonl">JSONL</button>
+        <button type="button" class="cal-button" data-cal-action="export-csv">CSV</button>
+      </div>
+      <p class="cal-status" data-cal-dashboard-status aria-live="polite"></p>
+    </section>
+
+    <section class="cal-panel cal-dashboard__results">
+      <table class="cal-results-table">
+        <thead>
+          <tr>
+            <th>{{localize "CAL.Columns.Time"}}</th>
+            <th>{{localize "CAL.Columns.Character"}}</th>
+            <th>{{localize "CAL.Columns.User"}}</th>
+            <th>{{localize "CAL.Columns.Category"}}</th>
+            <th>{{localize "CAL.Columns.Action"}}</th>
+            <th>{{localize "CAL.Columns.Change"}}</th>
+          </tr>
+        </thead>
+        <tbody data-cal-results></tbody>
+      </table>
+    </section>
+  </main>
+</div>
+
+<dialog class="cal-readers-dialog" data-cal-readers-dialog>
+  <form method="dialog">
+    <h2>{{localize "CAL.Dashboard.FullReadersFor"}} <span data-cal-readers-actor-name></span></h2>
+    <p>{{localize "CAL.Dashboard.FullReadersHint"}}</p>
+    <div class="cal-check-grid cal-readers-dialog__users">
+      {{#each users as |user|}}
+        <label class="cal-check">
+          <input type="checkbox" value="{{user.id}}" data-cal-reader-user>
+          <span>{{user.name}}</span>
+        </label>
+      {{/each}}
+    </div>
+    <div class="cal-toolbar cal-toolbar--end">
+      <button type="button" class="cal-button" data-cal-action="close-readers">{{localize "CAL.Common.Cancel"}}</button>
+      <button type="button" class="cal-button cal-button--primary" data-cal-action="save-readers">{{localize "CAL.Common.Apply"}}</button>
+    </div>
+  </form>
+</dialog>

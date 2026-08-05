@@ -1,0 +1,52 @@
+<section class="cal-sheet-tab__content" data-cal-actor-id="{{calAudit.actorId}}">
+  <div class="cal-sheet-tab__toolbar">
+    <input type="search" data-cal-filter="search" placeholder="{{localize 'CAL.Filters.Search'}}" aria-label="{{localize 'CAL.Filters.Search'}}">
+    <select data-cal-filter="category" aria-label="{{localize 'CAL.Filters.Category'}}">
+      <option value="">{{localize "CAL.Filters.AllCategories"}}</option>
+      <option value="currency">{{localize "CAL.Categories.currency"}}</option>
+      <option value="item">{{localize "CAL.Categories.item"}}</option>
+      <option value="itemQuantity">{{localize "CAL.Categories.itemQuantity"}}</option>
+      <option value="attribute">{{localize "CAL.Categories.attribute"}}</option>
+      <option value="activeEffect">{{localize "CAL.Categories.activeEffect"}}</option>
+      <option value="ownership">{{localize "CAL.Categories.ownership"}}</option>
+      <option value="identity">{{localize "CAL.Categories.identity"}}</option>
+      <option value="token">{{localize "CAL.Categories.token"}}</option>
+      <option value="other">{{localize "CAL.Categories.other"}}</option>
+    </select>
+    <button type="button" data-cal-action="refresh">
+      <i class="fa-solid fa-rotate" aria-hidden="true"></i>
+      {{localize "CAL.Common.Refresh"}}
+    </button>
+  </div>
+
+  {{#if calAudit.canReadAll}}
+    <p class="cal-callout cal-callout--permission">{{localize "CAL.SheetTab.FullAuditPermission"}}</p>
+  {{/if}}
+  <p class="cal-sheet-tab__status" data-cal-status>
+    {{#if calAudit.empty}}
+      {{localize "CAL.SheetTab.Empty"}}
+    {{else}}
+      {{localize "CAL.SheetTab.EntryCount" count=calAudit.entries.length}}
+    {{/if}}
+  </p>
+
+  <ol class="cal-audit-entries" data-cal-entries>
+    {{#each calAudit.entries as |entry|}}
+      <li class="cal-audit-entry {{#if entry.highlighted}}cal-audit-entry--highlighted{{/if}}" data-cal-entry="{{entry.id}}" data-category="{{entry.category}}">
+        <div class="cal-audit-entry__header">
+          <strong>{{entry.summary}}</strong>
+          <span>{{entry.timestampLabel}} · {{entry.userName}} · {{entry.categoryLabel}}</span>
+        </div>
+        <details>
+          <summary>{{localize "CAL.SheetTab.Details" count=entry.changes.length}}</summary>
+          <dl>
+            {{#each entry.changes as |change|}}
+              <dt>{{change.path}}</dt>
+              <dd>{{change.beforeLabel}} → {{change.afterLabel}}</dd>
+            {{/each}}
+          </dl>
+        </details>
+      </li>
+    {{/each}}
+  </ol>
+</section>

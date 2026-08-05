@@ -1,0 +1,114 @@
+{
+  "CAL": {
+    "Common": {
+      "Apply": "Apply",
+      "Cancel": "Cancel",
+      "Loading": "Loading audit entries…",
+      "Offline": "offline",
+      "Refresh": "Refresh",
+      "Save": "Save configuration",
+      "SelectAll": "Select all characters"
+    },
+    "Actions": {
+      "create": "Created",
+      "update": "Updated",
+      "delete": "Deleted"
+    },
+    "Categories": {
+      "currency": "Money and currency",
+      "item": "Item added or removed",
+      "itemQuantity": "Item quantity or uses",
+      "attribute": "Attributes and system data",
+      "activeEffect": "Active effects",
+      "ownership": "Ownership and permissions",
+      "identity": "Name, image, or identity",
+      "token": "Prototype token",
+      "other": "Other"
+    },
+    "Columns": {
+      "Action": "Action",
+      "Category": "Category",
+      "Change": "Change",
+      "Character": "Character",
+      "Time": "Time",
+      "User": "User"
+    },
+    "Dashboard": {
+      "Characters": "Player characters",
+      "DefaultSheetTab": "Default-sheet tab",
+      "ExportCombined": "One combined file",
+      "ExportMode": "Export layout",
+      "ExportPerCharacter": "One file per character",
+      "Filters": "Audit filters",
+      "FullReaders": "Full-log readers",
+      "FullReadersFor": "Full-log readers for",
+      "FullReadersHint": "Selected users may see every audit entry for this character in the sheet tab, including GM changes.",
+      "Highlighting": "Highlight rules",
+      "HighlightingHint": "Highlighted categories are emphasized throughout the dashboard and character-sheet tabs. Money, item creation/removal, item quantities, and ownership are highlighted by default.",
+      "LoadEntries": "Load selected logs",
+      "LoadedCount": "Loaded {count} audit entries.",
+      "NoPlayerCharacters": "No actors with a non-GM owner were found.",
+      "Open": "Audit Ledger",
+      "SearchCharacters": "Search characters…",
+      "TidySheetTab": "Tidy 5e tab",
+      "Title": "Character Audit Ledger"
+    },
+    "Filters": {
+      "Actions": "Actions",
+      "AllCategories": "All categories",
+      "Categories": "Categories",
+      "Category": "Category",
+      "From": "From date",
+      "HighlightedOnly": "Highlighted entries only",
+      "Search": "Search audit entries…",
+      "To": "To date",
+      "Users": "Users"
+    },
+    "Notifications": {
+      "ConfigurationSaved": "Character audit configuration saved.",
+      "Exported": "Exported {count} audit entries.",
+      "QueuedWithoutGM": "No GM is online. The audit entry was queued locally and will be submitted when a GM is available.",
+      "SelectActor": "Select at least one character.",
+      "RejectedEntries": "Rejected and removed {count} invalid queued audit entries."
+    },
+    "Settings": {
+      "CaptureEffects": {
+        "Name": "Capture Active Effect changes",
+        "Hint": "Audit creation, updates, and deletion of Active Effects embedded in characters or their items."
+      },
+      "Dashboard": {
+        "Name": "Audit dashboard",
+        "Label": "Open Character Audit Ledger",
+        "Hint": "Review logs, configure per-character sheet tabs and readers, change highlighting, and export JSONL or CSV."
+      },
+      "PageSize": {
+        "Name": "Entries per storage page",
+        "Hint": "Maximum audit entries stored in each hidden JournalEntry page. Smaller pages reduce update size; larger pages reduce document count."
+      },
+      "Retention": {
+        "Name": "Entries retained per character",
+        "Hint": "Oldest entries are pruned when a character exceeds this limit."
+      }
+    },
+    "SheetTab": {
+      "Details": "Show {count} field changes",
+      "Empty": "No visible audit entries are available.",
+      "EntryCount": "Showing {count} audit entries.",
+      "FullAuditPermission": "You have permission to view all audit entries for this character, including GM changes.",
+      "Title": "Audit Log"
+    },
+    "Storage": {
+      "ManagedPage": "This hidden page is managed by Character Audit Ledger. Do not edit it manually."
+    },
+    "Documents": {
+      "Actor": "Character",
+      "Item": "Item",
+      "ActiveEffect": "Active Effect"
+    },
+    "Summaries": {
+      "create": "Created {type}: {name}",
+      "update": "Updated {type}: {name}{paths}",
+      "delete": "Deleted {type}: {name}"
+    }
+  }
+}

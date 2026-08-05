@@ -1,0 +1,114 @@
+{
+  "CAL": {
+    "Common": {
+      "Apply": "Übernehmen",
+      "Cancel": "Abbrechen",
+      "Loading": "Audit-Einträge werden geladen…",
+      "Offline": "offline",
+      "Refresh": "Aktualisieren",
+      "Save": "Konfiguration speichern",
+      "SelectAll": "Alle Charaktere auswählen"
+    },
+    "Actions": {
+      "create": "Erstellt",
+      "update": "Geändert",
+      "delete": "Gelöscht"
+    },
+    "Categories": {
+      "currency": "Geld und Währung",
+      "item": "Gegenstand hinzugefügt oder entfernt",
+      "itemQuantity": "Gegenstandsmenge oder Verwendungen",
+      "attribute": "Attribute und Systemdaten",
+      "activeEffect": "Aktive Effekte",
+      "ownership": "Eigentum und Berechtigungen",
+      "identity": "Name, Bild oder Identität",
+      "token": "Prototyp-Token",
+      "other": "Sonstiges"
+    },
+    "Columns": {
+      "Action": "Aktion",
+      "Category": "Kategorie",
+      "Change": "Änderung",
+      "Character": "Charakter",
+      "Time": "Zeit",
+      "User": "Benutzer"
+    },
+    "Dashboard": {
+      "Characters": "Spielercharaktere",
+      "DefaultSheetTab": "Standardbogen-Tab",
+      "ExportCombined": "Eine gemeinsame Datei",
+      "ExportMode": "Exportaufteilung",
+      "ExportPerCharacter": "Eine Datei je Charakter",
+      "Filters": "Audit-Filter",
+      "FullReaders": "Vollständige Leser",
+      "FullReadersFor": "Vollständige Leser für",
+      "FullReadersHint": "Ausgewählte Benutzer dürfen im Charakterbogen alle Audit-Einträge dieses Charakters einschließlich SL-Änderungen sehen.",
+      "Highlighting": "Hervorhebungsregeln",
+      "HighlightingHint": "Hervorgehobene Kategorien werden im Dashboard und in Charakterbogen-Tabs betont. Geld, hinzugefügte oder entfernte Gegenstände, Mengen und Eigentum sind standardmäßig hervorgehoben.",
+      "LoadEntries": "Ausgewählte Protokolle laden",
+      "LoadedCount": "{count} Audit-Einträge geladen.",
+      "NoPlayerCharacters": "Keine Akteure mit einem Nicht-SL-Eigentümer gefunden.",
+      "Open": "Audit-Protokoll",
+      "SearchCharacters": "Charaktere suchen…",
+      "TidySheetTab": "Tidy-5e-Tab",
+      "Title": "Character Audit Ledger"
+    },
+    "Filters": {
+      "Actions": "Aktionen",
+      "AllCategories": "Alle Kategorien",
+      "Categories": "Kategorien",
+      "Category": "Kategorie",
+      "From": "Von Datum",
+      "HighlightedOnly": "Nur hervorgehobene Einträge",
+      "Search": "Audit-Einträge suchen…",
+      "To": "Bis Datum",
+      "Users": "Benutzer"
+    },
+    "Notifications": {
+      "ConfigurationSaved": "Konfiguration des Charakter-Audits gespeichert.",
+      "Exported": "{count} Audit-Einträge exportiert.",
+      "QueuedWithoutGM": "Kein SL ist online. Der Audit-Eintrag wurde lokal zwischengespeichert und wird bei Verfügbarkeit eines SL übermittelt.",
+      "SelectActor": "Mindestens einen Charakter auswählen.",
+      "RejectedEntries": "{count} ungültige zwischengespeicherte Audit-Einträge wurden abgelehnt und entfernt."
+    },
+    "Settings": {
+      "CaptureEffects": {
+        "Name": "Änderungen aktiver Effekte erfassen",
+        "Hint": "Erstellung, Änderungen und Löschung aktiver Effekte auf Charakteren oder deren Gegenständen auditieren."
+      },
+      "Dashboard": {
+        "Name": "Audit-Dashboard",
+        "Label": "Character Audit Ledger öffnen",
+        "Hint": "Protokolle prüfen, Tabs und Leser je Charakter konfigurieren, Hervorhebungen anpassen sowie JSONL oder CSV exportieren."
+      },
+      "PageSize": {
+        "Name": "Einträge je Speicherseite",
+        "Hint": "Maximale Anzahl von Audit-Einträgen pro verborgener JournalEntry-Seite. Kleinere Seiten reduzieren die Aktualisierungsgröße; größere Seiten reduzieren die Dokumentanzahl."
+      },
+      "Retention": {
+        "Name": "Aufbewahrte Einträge je Charakter",
+        "Hint": "Die ältesten Einträge werden entfernt, sobald ein Charakter dieses Limit überschreitet."
+      }
+    },
+    "SheetTab": {
+      "Details": "{count} Feldänderungen anzeigen",
+      "Empty": "Keine sichtbaren Audit-Einträge verfügbar.",
+      "EntryCount": "{count} Audit-Einträge werden angezeigt.",
+      "FullAuditPermission": "Du darfst alle Audit-Einträge dieses Charakters einschließlich SL-Änderungen sehen.",
+      "Title": "Audit-Protokoll"
+    },
+    "Storage": {
+      "ManagedPage": "Diese verborgene Seite wird von Character Audit Ledger verwaltet. Nicht manuell bearbeiten."
+    },
+    "Documents": {
+      "Actor": "Charakter",
+      "Item": "Gegenstand",
+      "ActiveEffect": "Aktiver Effekt"
+    },
+    "Summaries": {
+      "create": "{type} erstellt: {name}",
+      "update": "{type} geändert: {name}{paths}",
+      "delete": "{type} gelöscht: {name}"
+    }
+  }
+}

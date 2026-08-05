@@ -1,0 +1,48 @@
+{
+  "id": "character-audit-ledger",
+  "title": "Character Audit Ledger",
+  "description": "GM-authoritative, system-agnostic audit logging for character changes with scalable review, sheet tabs, highlighting, permissions, and JSONL/CSV export.",
+  "version": "1.0.0",
+  "authors": [
+    {
+      "name": "Akito"
+    }
+  ],
+  "compatibility": {
+    "minimum": "13",
+    "verified": "13.351",
+    "maximum": "13"
+  },
+  "esmodules": [
+    "scripts/main.mjs"
+  ],
+  "styles": [
+    "styles/character-audit-ledger.css"
+  ],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json"
+    },
+    {
+      "lang": "de",
+      "name": "Deutsch",
+      "path": "lang/de.json"
+    }
+  ],
+  "relationships": {
+    "recommends": [
+      {
+        "id": "tidy5e-sheet",
+        "type": "module",
+        "compatibility": {
+          "minimum": "13.0.0"
+        }
+      }
+    ]
+  },
+  "socket": true,
+  "license": "LICENSE",
+  "readme": "README.md"
+}
