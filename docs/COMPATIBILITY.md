@@ -35,3 +35,7 @@ System-specific semantics:
 ## Runtime-validation status
 
 The release was statically validated and tested outside Foundry. A licensed Foundry runtime and live Tidy installation were not available in the build environment, so interactive runtime smoke testing is documented as pending rather than claimed as completed.
+
+## ApplicationV2 dashboard
+
+The GM dashboard uses `foundry.applications.api.ApplicationV2` with `HandlebarsApplicationMixin`. The sole `main` part renders one top-level HTMLElement in every template state, as required by Foundry VTT v13.351. No ApplicationV1 compatibility fallback is used.

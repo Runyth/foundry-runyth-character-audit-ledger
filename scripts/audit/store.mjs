@@ -193,13 +193,17 @@ export function filterEntries(entries, filters = {}) {
   const offset = Math.max(0, Number.parseInt(filters.offset ?? 0, 10) || 0);
   const limit = Math.max(1, Number.parseInt(filters.limit ?? 250, 10) || 250);
 
-  return entries
+  return (Array.isArray(entries) ? entries : [])
+    .filter((entry) => entry && typeof entry === "object" && !Array.isArray(entry))
     .filter((entry) => !actorIds.size || actorIds.has(entry.actorId))
     .filter((entry) => !categories.size || categories.has(entry.category))
     .filter((entry) => !userIds.size || userIds.has(entry.userId))
     .filter((entry) => !actions.size || actions.has(entry.action))
     .filter((entry) => !filters.highlightedOnly || entry.highlighted)
-    .filter((entry) => entry.timestamp >= from && entry.timestamp <= to)
+    .filter((entry) => {
+      const timestamp = Number(entry.timestamp);
+      return Number.isFinite(timestamp) && timestamp >= from && timestamp <= to;
+    })
     .filter((entry) => {
       if (!search) return true;
       const haystack = [
@@ -208,10 +212,12 @@ export function filterEntries(entries, filters = {}) {
         entry.documentName,
         entry.summary,
         entry.category,
-        ...(entry.changes ?? []).map((change) => `${change.path} ${JSON.stringify(change.before)} ${JSON.stringify(change.after)}`)
+        ...(Array.isArray(entry.changes) ? entry.changes : [])
+          .map((change) => `${change?.path ?? ""} ${JSON.stringify(change?.before)} ${JSON.stringify(change?.after)}`)
       ].join(" ").toLocaleLowerCase();
       return haystack.includes(search);
     })
-    .sort((left, right) => right.timestamp - left.timestamp || String(right.id).localeCompare(String(left.id)))
+    .sort((left, right) => Number(right.timestamp) - Number(left.timestamp)
+      || String(right.id ?? "").localeCompare(String(left.id ?? "")))
     .slice(offset, offset + limit);
 }

@@ -250,7 +250,7 @@ export class AuditDashboard extends HandlebarsApplicationMixin(ApplicationV2) {
       const detailsSummary = document.createElement("summary");
       detailsSummary.textContent = formatAuditSummary(entry);
       const list = document.createElement("dl");
-      for (const change of entry.changes) {
+      for (const change of Array.isArray(entry.changes) ? entry.changes : []) {
         const term = document.createElement("dt");
         term.textContent = change.path;
         const description = document.createElement("dd");

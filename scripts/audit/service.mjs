@@ -75,7 +75,9 @@ export class AuditService {
   async queryLocal(actorIds, filters = {}) {
     const entries = [];
     for (const actorId of [...new Set(actorIds)]) entries.push(...await this.store.readActor(actorId));
-    const highlighted = entries.map((entry) => this.#withCurrentHighlight(entry));
+    const highlighted = entries
+      .map((entry) => this.#withCurrentHighlight(entry))
+      .filter(Boolean);
     return filterEntries(highlighted, {
       ...filters,
       limit: clampQueryLimit(filters.limit)
@@ -85,7 +87,9 @@ export class AuditService {
   async queryAllLocal(actorIds, filters = {}) {
     const entries = [];
     for (const actorId of [...new Set(actorIds)]) entries.push(...await this.store.readActor(actorId));
-    const highlighted = entries.map((entry) => this.#withCurrentHighlight(entry));
+    const highlighted = entries
+      .map((entry) => this.#withCurrentHighlight(entry))
+      .filter(Boolean);
     return filterEntries(highlighted, {
       ...filters,
       limit: Number.MAX_SAFE_INTEGER
@@ -141,10 +145,19 @@ export class AuditService {
   }
 
   #withCurrentHighlight(entry) {
+    if (!entry || typeof entry !== "object" || Array.isArray(entry)) return null;
     const rules = game.settings.get(MODULE_ID, SETTINGS.HIGHLIGHT_RULES) ?? DEFAULT_HIGHLIGHT_RULES;
+    const category = Object.values(CATEGORIES).includes(entry.category) ? entry.category : CATEGORIES.OTHER;
+    const action = ALLOWED_ACTIONS.has(entry.action) ? entry.action : ACTIONS.UPDATE;
+    const documentType = ALLOWED_DOCUMENT_TYPES.has(entry.documentType) ? entry.documentType : "Actor";
     return {
       ...entry,
-      highlighted: this.classifier.isHighlighted(entry.category, rules)
+      timestamp: Number.isFinite(Number(entry.timestamp)) ? Number(entry.timestamp) : 0,
+      action,
+      category,
+      documentType,
+      changes: Array.isArray(entry.changes) ? entry.changes : [],
+      highlighted: this.classifier.isHighlighted(category, rules)
     };
   }
 

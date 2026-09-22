@@ -51,3 +51,38 @@ test("filterEntries searches change paths and sorts newest first", () => {
 test("filterEntries ignores invalid date strings safely", () => {
   assert.equal(filterEntries(entries, { from: "invalid", to: "invalid", limit: 10 }).length, 2);
 });
+
+
+test("filterEntries handles empty, singleton, many, and zero-result states", () => {
+  assert.deepEqual(filterEntries([], { limit: 10 }), []);
+  assert.deepEqual(filterEntries([entries[0]], { limit: 10 }).map((entry) => entry.id), ["b"]);
+
+  const many = Array.from({ length: 50 }, (_, index) => ({
+    ...entries[0],
+    id: `entry-${String(index).padStart(3, "0")}`,
+    timestamp: entries[0].timestamp + index
+  }));
+  assert.equal(filterEntries(many, { limit: 100 }).length, 50);
+  assert.deepEqual(filterEntries(many, { search: "does-not-exist", limit: 100 }), []);
+  assert.equal(filterEntries(many, { search: "currency", limit: 100 }).length, 50);
+});
+
+test("filterEntries skips malformed records without mutating readable legacy records", () => {
+  const legacy = {
+    id: "legacy-1",
+    timestamp: String(entries[1].timestamp),
+    actorId: "a2",
+    actorName: "Mage",
+    userId: "u2",
+    userName: "Bob",
+    action: "update",
+    category: "other",
+    documentName: "Legacy",
+    changes: null
+  };
+  const snapshot = structuredClone(legacy);
+  const result = filterEntries([null, undefined, "broken", [], legacy], { limit: 10 });
+
+  assert.deepEqual(result.map((entry) => entry.id), ["legacy-1"]);
+  assert.deepEqual(legacy, snapshot);
+});

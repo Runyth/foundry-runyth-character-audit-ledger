@@ -1,6 +1,6 @@
 export const MODULE_ID = "character-audit-ledger";
 export const MODULE_TITLE = "Character Audit Ledger";
-export const MODULE_VERSION = "1.0.0";
+export const MODULE_VERSION = "1.0.1";
 
 export const SETTINGS = Object.freeze({
   ACTOR_CONFIG: "actorConfig",

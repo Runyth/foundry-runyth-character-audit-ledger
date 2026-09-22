@@ -15,7 +15,7 @@ function leafKeys(value, prefix = "") {
 test("manifest points only to existing runtime files", async () => {
   const manifest = JSON.parse(await readFile(path.join(root, "module.json"), "utf8"));
   assert.equal(manifest.id, "character-audit-ledger");
-  assert.equal(manifest.version, "1.0.0");
+  assert.equal(manifest.version, "1.0.1");
   assert.equal(manifest.compatibility.verified, "13.351");
   for (const relative of [
     ...manifest.esmodules,

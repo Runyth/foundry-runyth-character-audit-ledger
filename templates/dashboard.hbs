@@ -146,23 +146,23 @@
       </table>
     </section>
   </main>
-</div>
 
-<dialog class="cal-readers-dialog" data-cal-readers-dialog>
-  <form method="dialog">
-    <h2>{{localize "CAL.Dashboard.FullReadersFor"}} <span data-cal-readers-actor-name></span></h2>
-    <p>{{localize "CAL.Dashboard.FullReadersHint"}}</p>
-    <div class="cal-check-grid cal-readers-dialog__users">
-      {{#each users as |user|}}
-        <label class="cal-check">
-          <input type="checkbox" value="{{user.id}}" data-cal-reader-user>
-          <span>{{user.name}}</span>
-        </label>
-      {{/each}}
-    </div>
-    <div class="cal-toolbar cal-toolbar--end">
-      <button type="button" class="cal-button" data-cal-action="close-readers">{{localize "CAL.Common.Cancel"}}</button>
-      <button type="button" class="cal-button cal-button--primary" data-cal-action="save-readers">{{localize "CAL.Common.Apply"}}</button>
-    </div>
-  </form>
-</dialog>
+  <dialog class="cal-readers-dialog" data-cal-readers-dialog>
+    <form method="dialog">
+      <h2>{{localize "CAL.Dashboard.FullReadersFor"}} <span data-cal-readers-actor-name></span></h2>
+      <p>{{localize "CAL.Dashboard.FullReadersHint"}}</p>
+      <div class="cal-check-grid cal-readers-dialog__users">
+        {{#each users as |user|}}
+          <label class="cal-check">
+            <input type="checkbox" value="{{user.id}}" data-cal-reader-user>
+            <span>{{user.name}}</span>
+          </label>
+        {{/each}}
+      </div>
+      <div class="cal-toolbar cal-toolbar--end">
+        <button type="button" class="cal-button" data-cal-action="close-readers">{{localize "CAL.Common.Cancel"}}</button>
+        <button type="button" class="cal-button cal-button--primary" data-cal-action="save-readers">{{localize "CAL.Common.Apply"}}</button>
+      </div>
+    </form>
+  </dialog>
+</div>

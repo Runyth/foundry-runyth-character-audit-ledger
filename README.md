@@ -73,7 +73,7 @@ npm run validate
 python tools/build-release.py
 ```
 
-The release builder creates deterministic archives when `SOURCE_DATE_EPOCH` is set.
+The release builder creates deterministic archives when `SOURCE_DATE_EPOCH` is set. The source archive retains `.git` history; the documentation archive contains documentation only.
 
 ## Important security boundary
 

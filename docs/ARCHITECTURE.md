@@ -46,3 +46,7 @@ The world setting `storageIndex` maps Actor IDs to the JournalEntry, active page
 The generic classifier recognizes common currency and quantity path segments and the Foundry document model. The dnd5e adapter adds exact rules for `system.currency.*`, `system.quantity`, and `system.uses.*`.
 
 Additional systems can register a rule or adapter through the public API. Capture itself remains system-independent because Actor, embedded Item, Active Effect, ownership, and update hooks are Foundry document concepts.
+
+## ApplicationV2 dashboard rendering
+
+`AuditDashboard` uses one Handlebars ApplicationV2 part, `main`. Its template has exactly one static top-level element (`.cal-dashboard__layout`); all conditionals, iteration blocks, status content, results, and the full-reader `<dialog>` are nested beneath that root. This makes partial rerenders deterministic and satisfies Foundry v13's one-HTMLElement-per-part contract. Event delegation is attached to the stable application element and guarded with `data-cal-bound` to avoid duplicate listeners across rerenders.

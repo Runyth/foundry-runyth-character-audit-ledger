@@ -2,7 +2,7 @@
   "id": "character-audit-ledger",
   "title": "Character Audit Ledger",
   "description": "GM-authoritative, system-agnostic audit logging for character changes with scalable review, sheet tabs, highlighting, permissions, and JSONL/CSV export.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "authors": [
     {
       "name": "Akito"

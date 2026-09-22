@@ -34,7 +34,6 @@ INSTALLABLE_PATHS = (
 )
 
 SOURCE_EXCLUDES = {
-  ".git",
   "dist",
   "node_modules",
   "__pycache__",
@@ -44,7 +43,6 @@ DOCUMENTATION_PATHS = (
   "README.md",
   "CHANGELOG.md",
   "LICENSE",
-  "module.json",
   "docs",
 )
 
