@@ -2,6 +2,14 @@
 
 All notable changes follow Keep a Changelog structure and Semantic Versioning.
 
+## [1.0.2] - 2026-10-31
+
+### Changed
+
+- Renamed the unpublished module id to `runyth-character-audit-ledger`.
+- Licensed the program under AGPL-3.0-or-later.
+- Published install, source, and documentation archives as `-mod`, `-src`, and `-doc`.
+
 ## [1.0.1] - 2026-09-22
 
 ### Fixed
