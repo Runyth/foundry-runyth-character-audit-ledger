@@ -1,4 +1,4 @@
-# Character Audit Ledger
+# Runyth Character Audit Ledger
 
 A Foundry Virtual Tabletop v13 module that records player-character changes and provides a scalable GM audit dashboard, optional character-sheet tabs, configurable highlighting, permission-filtered player views, and JSONL/CSV exports.
 
@@ -18,7 +18,7 @@ The audit core does not require dnd5e or Tidy 5e Sheets. Currency and quantity c
 
 1. Back up the Foundry user-data directory.
 2. Extract the installable ZIP into `Data/modules/`.
-3. Ensure the resulting path is `Data/modules/character-audit-ledger/module.json`.
+3. Ensure the resulting path is `Data/modules/runyth-character-audit-ledger/module.json`.
 4. Enable **Character Audit Ledger** in the target world.
 5. As GM, open **Game Settings → Configure Settings → Module Settings → Open Character Audit Ledger**, or use the **Audit Ledger** button in the Actor Directory.
 
@@ -52,7 +52,7 @@ By default, an Owner sees only entries whose originating user ID is their own. A
 
 ## Public API
 
-Available after `init` at `game.modules.get("character-audit-ledger").api`:
+Available after `init` at `game.modules.get("runyth-character-audit-ledger").api`:
 
 | Function | Purpose |
 |---|---|
@@ -73,7 +73,7 @@ npm run validate
 python tools/build-release.py
 ```
 
-The release builder creates deterministic archives when `SOURCE_DATE_EPOCH` is set. The source archive retains `.git` history; the documentation archive contains documentation only.
+The release builder creates deterministic `-mod`, `-src`, and `-doc` archives when `SOURCE_DATE_EPOCH` is set. The source archive does not contain a developer Git checkout.
 
 ## Important security boundary
 
@@ -85,3 +85,19 @@ The storage and player read path are GM-authoritative, and ordinary players cann
 - Foundry v13.351 release: https://foundryvtt.com/releases/13.351
 - Tidy 5e Sheets API: https://kgar.github.io/foundry-vtt-tidy-5e-sheets/
 - Tidy API class reference: https://kgar.github.io/foundry-vtt-tidy-5e-sheets/classes/Tidy5eSheetsApi.html
+
+## Licence
+Copyright © 2026  [Daniel Braniewski](https://brani.dev/)
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.

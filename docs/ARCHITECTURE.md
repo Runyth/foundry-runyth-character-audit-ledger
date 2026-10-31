@@ -36,7 +36,7 @@
 Each audited Actor has one managed JournalEntry. JournalEntry pages contain an array under:
 
 ```text
-flags.character-audit-ledger.entries
+flags.runyth-character-audit-ledger.entries
 ```
 
 The world setting `storageIndex` maps Actor IDs to the JournalEntry, active page, counts, recent entry IDs, and update timestamp. The recent-ID cache makes normal acknowledgement retries O(1) without storing an unbounded global ID index.

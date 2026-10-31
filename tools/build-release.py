@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: AGPL-3.0-or-later
+# Copyright (C) 2026 Runyth. See the LICENSE file for rights and obligations.
 """Build reproducible Character Audit Ledger release archives."""
 
 from __future__ import annotations
@@ -18,9 +20,9 @@ MANIFEST = json.loads((ROOT / "module.json").read_text(encoding="utf-8"))
 MODULE_ID = MANIFEST["id"]
 VERSION = MANIFEST["version"]
 
-INSTALLABLE_NAME = f"{MODULE_ID}-v{VERSION}.zip"
-SOURCE_NAME = f"{MODULE_ID}-v{VERSION}-source.zip"
-DOCUMENTATION_NAME = f"{MODULE_ID}-v{VERSION}-documentation.zip"
+INSTALLABLE_NAME = f"{MODULE_ID}-v{VERSION}-mod.zip"
+SOURCE_NAME = f"{MODULE_ID}-v{VERSION}-src.zip"
+DOCUMENTATION_NAME = f"{MODULE_ID}-v{VERSION}-doc.zip"
 
 INSTALLABLE_PATHS = (
   "module.json",
@@ -37,6 +39,7 @@ SOURCE_EXCLUDES = {
   "dist",
   "node_modules",
   "__pycache__",
+  ".git",
 }
 
 DOCUMENTATION_PATHS = (
@@ -128,7 +131,7 @@ def main() -> None:
   documentation = DIST / DOCUMENTATION_NAME
 
   write_archive(installable, collect(INSTALLABLE_PATHS), MODULE_ID, epoch)
-  write_archive(source, collect_source(), f"{MODULE_ID}-{VERSION}", epoch)
+  write_archive(source, collect_source(), f"{MODULE_ID}-v{VERSION}-src", epoch)
 
   first_checksums = (
     f"{sha256(installable)}  {installable.name}\n"
@@ -137,14 +140,14 @@ def main() -> None:
   write_archive(
     documentation,
     collect(DOCUMENTATION_PATHS),
-    f"{MODULE_ID}-v{VERSION}-documentation",
+    f"{MODULE_ID}-v{VERSION}-doc",
     epoch,
     extras={"ARTIFACT-SHA256SUMS.txt": first_checksums},
   )
 
   artifacts = (installable, source, documentation)
   checksum_text = "".join(f"{sha256(path)}  {path.name}\n" for path in artifacts)
-  (DIST / "SHA256SUMS.txt").write_text(checksum_text, encoding="utf-8")
+  (DIST / f"{MODULE_ID}-v{VERSION}-SHA256SUMS.txt").write_text(checksum_text, encoding="utf-8")
 
   for path in artifacts:
     print(f"{path.name}: {path.stat().st_size} bytes")

@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+// Copyright (C) 2026 Runyth. See the LICENSE file for rights and obligations.
 import test from "node:test";
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
@@ -14,8 +16,8 @@ function leafKeys(value, prefix = "") {
 
 test("manifest points only to existing runtime files", async () => {
   const manifest = JSON.parse(await readFile(path.join(root, "module.json"), "utf8"));
-  assert.equal(manifest.id, "character-audit-ledger");
-  assert.equal(manifest.version, "1.0.1");
+  assert.equal(manifest.id, "runyth-character-audit-ledger");
+  assert.equal(manifest.version, "1.0.2");
   assert.equal(manifest.compatibility.verified, "13.351");
   for (const relative of [
     ...manifest.esmodules,
