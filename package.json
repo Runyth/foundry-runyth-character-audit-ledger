@@ -1,7 +1,7 @@
 {
   "name": "runyth-character-audit-ledger",
   "private": true,
-  "version": "1.0.2",
+  "version": "1.0.3",
   "type": "module",
   "description": "GM-authoritative audit logging for Foundry Virtual Tabletop character changes.",
   "scripts": {
