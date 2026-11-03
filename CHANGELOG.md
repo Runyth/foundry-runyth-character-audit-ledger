@@ -1,42 +1,30 @@
 # Changelog
 
-## 1.0.3 - 2026-11-01
-
-### Fixed
+## 1.0.3 — 2026-11-01
 
 - Attributed the source licence headers to the same holder the README Licence chapter names so every module surface carries the same copyright holder.
 
-All notable changes follow Keep a Changelog structure and Semantic Versioning.
+- All notable changes follow Keep a Changelog structure and Semantic Versioning.
 
-## [1.0.2] - 2026-10-31
-
-### Changed
+## 1.0.2 — 2026-10-31
 
 - Renamed the unpublished module id to `runyth-character-audit-ledger`.
 - Licensed the program under AGPL-3.0-or-later.
 - Published install, source, and documentation archives as `-mod`, `-src`, and `-doc`.
 
-## [1.0.1] - 2026-09-22
-
-### Fixed
+## 1.0.1 — 2026-09-22
 
 - Fixed the Foundry VTT 13.351 ApplicationV2 dashboard render failure by nesting the full-reader dialog inside the existing `main` part root, guaranteeing exactly one top-level HTMLElement.
 - Kept loading, empty, populated, filtered, permission-restricted, and reader-dialog states inside the same stable dashboard root without ApplicationV1 fallback or warning suppression.
 - Hardened read-time handling of malformed or legacy audit records so invalid records cannot crash dashboard queries or result rendering; persisted audit data is not rewritten.
 
-### Tests
-
 - Added structural ApplicationV2 part tests that reject multiple roots, top-level Handlebars branches, top-level comments, or non-whitespace text.
 - Added regression coverage for empty, singleton, many-entry, zero-result, populated-filter, search, sorting, rerender binding, permissions, optional Tidy integration, and malformed legacy-record paths.
-
-### Packaging
 
 - Source releases now retain the repository `.git` history.
 - Documentation releases remain documentation-only and no longer include `module.json`.
 
-## [1.0.0] - 2026-08-05
-
-### Added
+## 1.0.0 — 2026-08-05
 
 - System-agnostic auditing for player-owned Actor updates.
 - Embedded Item and Active Effect create, update, and delete auditing.
