@@ -1,5 +1,24 @@
 # Changelog
 
+
+## 1.0.4 — 2026-11-05
+
+- Ported the Garb & Grime fleet aesthetic to the ledger's surfaces: dark petrol
+  window gradient, gold section headings, gradient buttons with gold hover,
+  dark field controls, pill-styled status rows and sheet toolbar band, thin
+  scrollbars, and the gold focus ring across dashboard, sheet audit tab, and
+  the full-readers dialog. Tokens are declared on the dashboard root so the
+  look stands without Garb & Grime being installed.
+- Reduced the reflow work that made window resizing janky on long audit
+  lists: overflow clipping moved from `overflow-wrap: anywhere` to
+  `overflow-wrap: break-word` (same visible wrapping, cheaper min-content
+  layout), audit entries and actor rows render through `content-visibility: auto`
+  with estimated intrinsic sizes so offscreen frames do not re-run layout
+  during the resize loop, and the sheet toolbar sticky band paints an explicit
+  background instead of inheriting the sheet gradient every frame. The results
+  table stays a real table: content-visibility does not apply to internal
+  table boxes.
+
 ## 1.0.3 — 2026-11-01
 
 - Attributed the source licence headers to the same holder the README Licence chapter names so every module surface carries the same copyright holder.

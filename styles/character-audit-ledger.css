@@ -1,10 +1,58 @@
+/* Design system ports the Garb & Grime fleet aesthetic: dark petrol surface,
+   gold headings, gradient buttons, and pill accents. All tokens are local so
+   the look stands without Garb & Grime being enabled. */
 .runyth-character-audit-ledger.cal-dashboard {
+  --cal-bg: #17191d;
+  --cal-panel: rgba(35, 38, 44, 0.96);
+  --cal-panel-2: #2b2f36;
+  --cal-border: #555d69;
+  --cal-field-border: #68717f;
+  --cal-field: #101216;
+  --cal-text: #f2f3f5;
+  --cal-muted: #c4c9d0;
+  --cal-accent: #d7ad61;
+  --cal-accent-strong: #f0ca82;
+  --cal-danger: #e07373;
+  --cal-success: #79c58a;
+  --cal-focus: #8ec5ff;
   min-width: 760px;
+  color: var(--cal-text);
+}
+
+/* Full-bleed stocked window shell locks the surface to the module so burning
+   the window headers contents through `background: inherit` keeps working when
+   Foundry reflows the shell. */
+.runyth-character-audit-ledger.cal-dashboard .window-content,
+.cal-sheet-tab {
+  padding: 0;
+  background: linear-gradient(160deg, #16181c, #20242a 65%, #17191d);
+  color: var(--cal-text);
+  scrollbar-width: thin;
 }
 
 .cal-dashboard .window-content {
-  padding: 0;
   overflow: hidden;
+}
+
+.cal-sheet-tab {
+  padding: 0.75rem;
+  scrollbar-gutter: stable;
+}
+
+/* Scroll surfaces only lay out frames close to the viewport during window
+   resize, which removes the resize lag on long lists. The results table stays
+   out: content-visibility does not apply to internal table boxes, so the
+   table leans on the break-word swaps instead. */
+.cal-audit-entries > .cal-audit-entry {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 8rem;
+}
+
+/* Long sidebar: the actor rows lay out only near the visible slice. Current
+   viewer count does not change their intrinsic height. */
+.cal-actor-row {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 5.75rem;
 }
 
 .cal-dashboard__layout {
@@ -29,34 +77,48 @@
   overflow: hidden;
 }
 
+.cal-panel,
+.cal-audit-entry {
+  border: 1px solid var(--cal-border);
+  border-radius: 0.5rem;
+  background: var(--cal-panel);
+  box-shadow: 0 0.2rem 0.6rem rgba(0, 0, 0, 0.28);
+}
+
 .cal-panel {
-  border: 1px solid var(--color-border-light-2, #777);
-  border-radius: 6px;
-  background: var(--color-bg-option, rgba(0, 0, 0, 0.08));
-  padding: 0.75rem;
+  min-width: 0;
+  padding: 0.85rem;
 }
 
 .cal-panel h2 {
-  margin: 0 0 0.5rem;
-  font-size: 1.05rem;
+  margin: 0 0 0.55rem;
+  color: var(--cal-accent-strong);
+  font-size: 1.15rem;
+}
+
+.cal-panel h2 i {
+  color: var(--cal-accent-strong);
 }
 
 .cal-dashboard__actors {
   max-height: 46vh;
-  overflow: auto;
   margin-top: 0.5rem;
   padding-right: 0.25rem;
+  overflow: auto;
+  scrollbar-width: thin;
 }
 
 .cal-actor-row {
   display: grid;
   gap: 0.5rem;
-  padding: 0.5rem;
-  border-bottom: 1px solid var(--color-border-light-2, #777);
+  padding: 0.55rem;
+  border: 1px solid var(--cal-border);
+  border-radius: 0.4rem;
+  background: rgba(35, 38, 44, 0.98);
 }
 
-.cal-actor-row:last-child {
-  border-bottom: 0;
+.cal-actor-row + .cal-actor-row {
+  margin-top: 0.5rem;
 }
 
 .cal-actor-row__identity {
@@ -71,8 +133,8 @@
   width: 38px;
   height: 38px;
   object-fit: cover;
-  border: 0;
-  border-radius: 4px;
+  border: 1px solid var(--cal-border);
+  border-radius: 0.3rem;
 }
 
 .cal-actor-row__identity span,
@@ -87,6 +149,10 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.cal-actor-row__identity small {
+  color: var(--cal-muted);
 }
 
 .cal-actor-row__toggles {
@@ -105,10 +171,11 @@
   align-items: center;
   gap: 0.4rem;
   min-width: 0;
+  color: var(--cal-text);
 }
 
 .cal-check span {
-  overflow-wrap: anywhere;
+  overflow-wrap: break-word;
 }
 
 .cal-check--all {
@@ -128,6 +195,11 @@
   margin: 0.5rem 0;
 }
 
+.cal-panel .hint {
+  margin: 0;
+  color: var(--cal-muted);
+}
+
 .cal-filter-grid {
   display: grid;
   grid-template-columns: minmax(190px, 2fr) repeat(2, minmax(135px, 1fr)) minmax(170px, 1fr);
@@ -137,7 +209,13 @@
 .cal-filter-grid > label:not(.cal-check),
 .cal-toolbar > label {
   display: grid;
-  gap: 0.2rem;
+  gap: 0.25rem;
+}
+
+.cal-filter-grid > label > span:first-child,
+.cal-toolbar > label > span:first-child {
+  font-weight: 600;
+  color: var(--cal-text);
 }
 
 .cal-filter-panel details {
@@ -147,6 +225,7 @@
 .cal-filter-panel summary {
   cursor: pointer;
   font-weight: 600;
+  color: var(--cal-accent-strong);
 }
 
 .cal-toolbar {
@@ -164,11 +243,48 @@
 .cal-button,
 .cal-directory-button,
 .cal-sheet-fallback-button {
-  min-height: var(--form-field-height, 32px);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  min-width: 0;
+  min-height: 2.1rem;
+  padding: 0.38rem 0.65rem;
+  border: 1px solid var(--cal-field-border);
+  border-radius: 0.35rem;
+  background: linear-gradient(#343943, #282c33);
+  color: #f6f7f8;
+  line-height: 1.2;
+  text-align: center;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+.cal-button:hover:not(:disabled),
+.cal-directory-button:hover:not(:disabled),
+.cal-sheet-fallback-button:hover:not(:disabled) {
+  border-color: var(--cal-accent);
+  background: linear-gradient(#444b57, #31363f);
+  color: #fff;
+}
+
+.cal-button:focus-visible,
+.cal-directory-button:focus-visible,
+.cal-sheet-fallback-button:focus-visible,
+.cal-panel :is(input, select, summary):focus-visible,
+.cal-sheet-tab :is(input, select, button, summary):focus-visible {
+  outline: 2px solid var(--cal-focus);
+  outline-offset: 1px;
+}
+
+.cal-button:disabled {
+  opacity: 0.48;
+  cursor: not-allowed;
 }
 
 .cal-button--compact {
-  min-height: 28px;
+  min-height: 1.8rem;
+  padding: 0.25rem 0.45rem;
   font-size: 0.85rem;
 }
 
@@ -176,11 +292,30 @@
   font-weight: 700;
 }
 
+.cal-dashboard input,
+.cal-dashboard select,
+.cal-sheet-tab input,
+.cal-sheet-tab select,
+.cal-readers-dialog input {
+  min-width: 0;
+  min-height: 2rem;
+  padding: 0.35rem 0.45rem;
+  border: 1px solid var(--cal-field-border);
+  border-radius: 0.3rem;
+  background: var(--cal-field);
+  color: var(--cal-text);
+}
+
+.cal-readers-dialog select {
+  min-height: 2rem;
+}
+
 .cal-dashboard__results {
   flex: 1;
   min-height: 220px;
-  overflow: auto;
   padding: 0;
+  overflow: auto;
+  scrollbar-width: thin;
 }
 
 .cal-results-table {
@@ -192,16 +327,19 @@
 .cal-results-table th,
 .cal-results-table td {
   padding: 0.45rem;
-  border-bottom: 1px solid var(--color-border-light-2, #777);
+  border-bottom: 1px solid var(--cal-border);
   vertical-align: top;
-  overflow-wrap: anywhere;
+  text-align: left;
+  overflow-wrap: break-word;
+  word-break: normal;
 }
 
 .cal-results-table th {
   position: sticky;
   top: 0;
   z-index: 1;
-  background: var(--color-bg, #222);
+  background: #17191d;
+  color: var(--cal-accent-strong);
 }
 
 .cal-results-table th:nth-child(1) { width: 145px; }
@@ -210,15 +348,15 @@
 .cal-results-table th:nth-child(4) { width: 130px; }
 .cal-results-table th:nth-child(5) { width: 85px; }
 
-.cal-result--highlighted,
-.cal-audit-entry--highlighted {
-  box-shadow: inset 4px 0 0 var(--color-warm-2, #d9a441);
-  background: color-mix(in srgb, var(--color-warm-2, #d9a441) 13%, transparent);
-}
-
 .cal-results-table details summary,
 .cal-audit-entry details summary {
   cursor: pointer;
+}
+
+.cal-result--highlighted td,
+.cal-audit-entry--highlighted {
+  box-shadow: inset 3px 0 0 var(--cal-accent);
+  background: rgba(48, 44, 35, 0.98);
 }
 
 .cal-results-table dl,
@@ -227,6 +365,7 @@
   grid-template-columns: minmax(110px, 35%) minmax(0, 1fr);
   gap: 0.25rem 0.5rem;
   margin: 0.5rem 0 0;
+  color: var(--cal-muted);
 }
 
 .cal-results-table dt,
@@ -234,55 +373,92 @@
 .cal-audit-entry dt,
 .cal-audit-entry dd {
   margin: 0;
-  overflow-wrap: anywhere;
+  overflow-wrap: break-word;
+  word-break: normal;
   white-space: pre-wrap;
+}
+
+.cal-results-table dt,
+.cal-audit-entry dt {
+  color: var(--cal-text);
 }
 
 .cal-status,
 .cal-sheet-tab__status {
   min-height: 1.25rem;
   margin: 0.5rem 0 0;
+  color: var(--cal-muted);
 }
+
+.cal-callout {
+  padding: 0.55rem 0.7rem;
+  border-left: 4px solid var(--cal-accent);
+  border-radius: 0.25rem;
+  background: #191c21;
+  color: var(--cal-muted);
+  overflow-wrap: break-word;
+  word-break: normal;
+}
+
 
 .cal-readers-dialog {
   width: min(560px, 90vw);
   max-height: 80vh;
-  border: 1px solid var(--color-border-light-2, #777);
-  border-radius: 6px;
-  background: var(--color-bg, #222);
-  color: inherit;
+  padding: 1rem;
+  border: 1px solid var(--cal-border);
+  border-radius: 0.5rem;
+  background: linear-gradient(160deg, #16181c, #20242a 65%, #17191d);
+  color: var(--cal-text);
+  box-shadow: 0 0.4rem 1rem rgba(0, 0, 0, 0.5);
 }
 
 .cal-readers-dialog::backdrop {
-  background: rgba(0, 0, 0, 0.65);
+  background: rgba(4, 5, 7, 0.7);
+}
+
+.cal-readers-dialog h2 {
+  margin: 0 0 0.4rem;
+  color: var(--cal-accent-strong);
+}
+
+.cal-readers-dialog p {
+  margin: 0;
+  color: var(--cal-muted);
 }
 
 .cal-readers-dialog__users {
   max-height: 48vh;
+  margin: 0.65rem 0;
   overflow: auto;
+  scrollbar-width: thin;
 }
 
 .cal-sheet-tab {
   min-height: 240px;
   overflow: auto;
-  padding: 0.75rem;
 }
 
 .cal-sheet-tab--fallback {
   max-height: 55vh;
-  border-top: 1px solid var(--color-border-light-2, #777);
+  border-top: 1px solid var(--cal-border);
 }
 
 .cal-sheet-tab__toolbar {
   display: grid;
   grid-template-columns: minmax(180px, 1fr) minmax(150px, auto) auto;
   gap: 0.5rem;
-  align-items: center;
   position: sticky;
   top: 0;
   z-index: 2;
-  padding-bottom: 0.5rem;
-  background: inherit;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  padding: 0.45rem;
+  background: #17191d;
+  border-bottom: 1px solid var(--cal-border);
+}
+
+.cal-sheet-tab__content .cal-sheet-tab__toolbar {
+  margin-bottom: 0.5rem;
 }
 
 .cal-audit-entries {
@@ -295,8 +471,6 @@
 
 .cal-audit-entry {
   padding: 0.6rem 0.75rem;
-  border: 1px solid var(--color-border-light-2, #777);
-  border-radius: 5px;
 }
 
 .cal-audit-entry__header {
@@ -306,19 +480,16 @@
 
 .cal-audit-entry__header span {
   font-size: 0.82rem;
-  opacity: 0.8;
+  color: var(--cal-muted);
 }
 
-.cal-callout {
-  padding: 0.55rem 0.7rem;
-  border-left: 4px solid var(--color-cool-3, #4a8ca8);
-  background: color-mix(in srgb, var(--color-cool-3, #4a8ca8) 12%, transparent);
+/* Persistent Actor-directory launch button in the fleet look. */
+.cal-directory-button {
+  max-width: max-content;
 }
 
-.cal-dashboard :is(button, input, select, summary):focus-visible,
-.cal-sheet-tab :is(button, input, select, summary):focus-visible {
-  outline: 2px solid var(--color-warm-2, #d9a441);
-  outline-offset: 2px;
+.cal-sheet-fallback-button {
+  flex: 0 1 auto;
 }
 
 @media (max-width: 980px) {
