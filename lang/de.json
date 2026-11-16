@@ -1,29 +1,20 @@
 {
   "CAL": {
-    "Common": {
-      "Apply": "Übernehmen",
-      "Cancel": "Abbrechen",
-      "Loading": "Audit-Einträge werden geladen…",
-      "Offline": "offline",
-      "Refresh": "Aktualisieren",
-      "Save": "Konfiguration speichern",
-      "SelectAll": "Alle Charaktere auswählen"
-    },
     "Actions": {
       "create": "Erstellt",
-      "update": "Geändert",
-      "delete": "Gelöscht"
+      "delete": "Gelöscht",
+      "update": "Geändert"
     },
     "Categories": {
+      "activeEffect": "Aktive Effekte",
+      "attribute": "Attribute und Systemdaten",
       "currency": "Geld und Währung",
+      "identity": "Name, Bild oder Identität",
       "item": "Gegenstand hinzugefügt oder entfernt",
       "itemQuantity": "Gegenstandsmenge oder Verwendungen",
-      "attribute": "Attribute und Systemdaten",
-      "activeEffect": "Aktive Effekte",
+      "other": "Sonstiges",
       "ownership": "Eigentum und Berechtigungen",
-      "identity": "Name, Bild oder Identität",
-      "token": "Prototyp-Token",
-      "other": "Sonstiges"
+      "token": "Prototyp-Token"
     },
     "Columns": {
       "Action": "Aktion",
@@ -32,6 +23,15 @@
       "Character": "Charakter",
       "Time": "Zeit",
       "User": "Benutzer"
+    },
+    "Common": {
+      "Apply": "Übernehmen",
+      "Cancel": "Abbrechen",
+      "Loading": "Audit-Einträge werden geladen…",
+      "Offline": "offline",
+      "Refresh": "Aktualisieren",
+      "Save": "Konfiguration speichern",
+      "SelectAll": "Alle Charaktere auswählen"
     },
     "Dashboard": {
       "Characters": "Spielercharaktere",
@@ -53,6 +53,11 @@
       "TidySheetTab": "Tidy-5e-Tab",
       "Title": "Character Audit Ledger"
     },
+    "Documents": {
+      "ActiveEffect": "Aktiver Effekt",
+      "Actor": "Charakter",
+      "Item": "Gegenstand"
+    },
     "Filters": {
       "Actions": "Aktionen",
       "AllCategories": "Alle Kategorien",
@@ -68,26 +73,26 @@
       "ConfigurationSaved": "Konfiguration des Charakter-Audits gespeichert.",
       "Exported": "{count} Audit-Einträge exportiert.",
       "QueuedWithoutGM": "Kein SL ist online. Der Audit-Eintrag wurde lokal zwischengespeichert und wird bei Verfügbarkeit eines SL übermittelt.",
-      "SelectActor": "Mindestens einen Charakter auswählen.",
-      "RejectedEntries": "{count} ungültige zwischengespeicherte Audit-Einträge wurden abgelehnt und entfernt."
+      "RejectedEntries": "{count} ungültige zwischengespeicherte Audit-Einträge wurden abgelehnt und entfernt.",
+      "SelectActor": "Mindestens einen Charakter auswählen."
     },
     "Settings": {
       "CaptureEffects": {
-        "Name": "Änderungen aktiver Effekte erfassen",
-        "Hint": "Erstellung, Änderungen und Löschung aktiver Effekte auf Charakteren oder deren Gegenständen auditieren."
+        "Hint": "Erstellung, Änderungen und Löschung aktiver Effekte auf Charakteren oder deren Gegenständen auditieren.",
+        "Name": "Änderungen aktiver Effekte erfassen"
       },
       "Dashboard": {
-        "Name": "Audit-Dashboard",
+        "Hint": "Protokolle prüfen, Tabs und Leser je Charakter konfigurieren, Hervorhebungen anpassen sowie JSONL oder CSV exportieren.",
         "Label": "Character Audit Ledger öffnen",
-        "Hint": "Protokolle prüfen, Tabs und Leser je Charakter konfigurieren, Hervorhebungen anpassen sowie JSONL oder CSV exportieren."
+        "Name": "Audit-Dashboard"
       },
       "PageSize": {
-        "Name": "Einträge je Speicherseite",
-        "Hint": "Maximale Anzahl von Audit-Einträgen pro verborgener JournalEntry-Seite. Kleinere Seiten reduzieren die Aktualisierungsgröße; größere Seiten reduzieren die Dokumentanzahl."
+        "Hint": "Maximale Anzahl von Audit-Einträgen pro verborgener JournalEntry-Seite. Kleinere Seiten reduzieren die Aktualisierungsgröße; größere Seiten reduzieren die Dokumentanzahl.",
+        "Name": "Einträge je Speicherseite"
       },
       "Retention": {
-        "Name": "Aufbewahrte Einträge je Charakter",
-        "Hint": "Die ältesten Einträge werden entfernt, sobald ein Charakter dieses Limit überschreitet."
+        "Hint": "Die ältesten Einträge werden entfernt, sobald ein Charakter dieses Limit überschreitet.",
+        "Name": "Aufbewahrte Einträge je Charakter"
       }
     },
     "SheetTab": {
@@ -100,15 +105,10 @@
     "Storage": {
       "ManagedPage": "Diese verborgene Seite wird von Character Audit Ledger verwaltet. Nicht manuell bearbeiten."
     },
-    "Documents": {
-      "Actor": "Charakter",
-      "Item": "Gegenstand",
-      "ActiveEffect": "Aktiver Effekt"
-    },
     "Summaries": {
       "create": "{type} erstellt: {name}",
-      "update": "{type} geändert: {name}{paths}",
-      "delete": "{type} gelöscht: {name}"
+      "delete": "{type} gelöscht: {name}",
+      "update": "{type} geändert: {name}{paths}"
     }
   }
 }

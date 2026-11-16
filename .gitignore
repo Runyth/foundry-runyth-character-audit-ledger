@@ -2,3 +2,15 @@ dist/
 node_modules/
 __pycache__/
 *.pyc
+# --- Runyth template managed (begin) ---
+coverage/
+.nyc_output/
+.cache/
+.runyth-template-source/
+*.log
+.env
+.env.*
+!.env.example
+.DS_Store
+Thumbs.db
+# --- Runyth template managed (end) ---

@@ -1,7 +1,11 @@
-# Security
+# Security policy
 
-Report capture, permission, or release-artifact problems privately to the repository maintainer before public disclosure when they could expose character data.
+Report vulnerabilities privately through GitHub's private vulnerability
+reporting for the repository. Do not disclose unreleased exploit details in a
+public issue.
 
-The storage and player read path are GM-authoritative. This module is an operational accountability log, not a tamper-proof forensic ledger. See `docs/SECURITY.md`.
+Supported releases are the newest minor release and the latest patch of the
+previous minor release unless a module documents a stricter policy.
 
-Do not include world exports, access tokens, or player names in reports.
+Security-sensitive changes must preserve least privilege, avoid logging secret
+or hidden content, validate imported data, and avoid private Foundry internals.

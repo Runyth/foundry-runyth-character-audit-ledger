@@ -1,25 +1,22 @@
 {
-  "id": "runyth-character-audit-ledger",
-  "title": "Runyth Character Audit Ledger",
-  "description": "GM-authoritative, system-agnostic audit logging for character changes with scalable review, sheet tabs, highlighting, permissions, and JSONL/CSV export.",
-  "version": "1.0.4",
   "authors": [
     {
       "name": "Runyth",
       "url": "https://github.com/Runyth"
     }
   ],
+  "changelog": "CHANGELOG.md",
   "compatibility": {
+    "maximum": "13",
     "minimum": "13",
-    "verified": "13.351",
-    "maximum": "13"
+    "verified": "13.351"
   },
+  "description": "GM-authoritative, system-agnostic audit logging for character changes with scalable review, sheet tabs, highlighting, permissions, and JSONL/CSV export.",
+  "download": "https://github.com/Runyth/foundry-runyth-character-audit-ledger/releases/download/v1.0.4/runyth-character-audit-ledger-v1.0.4-mod.zip",
   "esmodules": [
     "scripts/main.mjs"
   ],
-  "styles": [
-    "styles/character-audit-ledger.css"
-  ],
+  "id": "runyth-character-audit-ledger",
   "languages": [
     {
       "lang": "en",
@@ -32,22 +29,25 @@
       "path": "lang/de.json"
     }
   ],
+  "license": "LICENSE",
+  "manifest": "https://github.com/Runyth/foundry-runyth-character-audit-ledger/releases/latest/download/module.json",
+  "readme": "README.md",
   "relationships": {
     "recommends": [
       {
-        "id": "tidy5e-sheet",
-        "type": "module",
         "compatibility": {
           "minimum": "13.0.0"
-        }
+        },
+        "id": "tidy5e-sheet",
+        "type": "module"
       }
     ]
   },
   "socket": true,
-  "license": "LICENSE",
-  "readme": "README.md",
+  "styles": [
+    "styles/character-audit-ledger.css"
+  ],
+  "title": "Runyth Character Audit Ledger",
   "url": "https://github.com/Runyth/foundry-runyth-character-audit-ledger",
-  "manifest": "https://github.com/Runyth/foundry-runyth-character-audit-ledger/releases/latest/download/module.json",
-  "download": "https://github.com/Runyth/foundry-runyth-character-audit-ledger/releases/download/v1.0.4/runyth-character-audit-ledger-v1.0.4-mod.zip",
-  "changelog": "CHANGELOG.md"
+  "version": "1.0.4"
 }
